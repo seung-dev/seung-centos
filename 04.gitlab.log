@@ -1,0 +1,73 @@
+# df -m
+Filesystem     1M-blocks  Used Available Use% Mounted on
+devtmpfs            1860     0      1860   0% /dev
+tmpfs               1876     0      1876   0% /dev/shm
+tmpfs               1876    10      1867   1% /run
+tmpfs               1876     0      1876   0% /sys/fs/cgroup
+/dev/sda3          18121  4640     13482  26% /
+/dev/sda1            283   144       120  55% /boot
+tmpfs                376     2       375   1% /run/user/42
+tmpfs                376     6       370   2% /run/user/1000
+# dnf install -y curl policycoreutils openssh-server
+Last metadata expiration check: 0:27:35 ago on Sun 12 Jul 2020 03:02:43 AM PDT.
+Package curl-7.61.1-12.el8.x86_64 is already installed.
+Package policycoreutils-2.9-9.el8.x86_64 is already installed.
+Package openssh-server-8.0p1-4.el8_1.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+# systemctl status sshd
+● sshd.service - OpenSSH server daemon
+   Loaded: loaded (/usr/lib/systemd/system/sshd.service; enabled; vendor preset: enabled)
+   Active: active (running) since Sun 2020-07-12 03:09:34 PDT; 20min ago
+     Docs: man:sshd(8)
+           man:sshd_config(5)
+ Main PID: 1113 (sshd)
+    Tasks: 1 (limit: 23800)
+   Memory: 5.1M
+   CGroup: /system.slice/sshd.service
+           └─1113 /usr/sbin/sshd -D -oCiphers=aes256-gcm@openssh.com,chacha20-poly1305@openssh.com,aes256->
+
+...
+
+# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens33
+  sources: 
+  services: cockpit dhcpv6-client ssh
+  ports: 
+  protocols: 
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+  
+# firewall-cmd --permanent --add-service=http
+# firewall-cmd --permanent --add-port=18443/tcp
+# systemctl reload firewalld
+# firewall-cmd --list-all
+public (active)
+  target: default
+  icmp-block-inversion: no
+  interfaces: ens33
+  sources: 
+  services: cockpit dhcpv6-client http ssh
+  ports: 18443/tcp
+  protocols: 
+  masquerade: no
+  forward-ports: 
+  source-ports: 
+  icmp-blocks: 
+  rich rules: 
+	
+# dnf install -y postfix
+# systemctl enable postfix
+# systemctl start postfix
+# curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+# EXTERNAL_URL="http://192.168.94.101" dnf install -y gitlab-ee
+
+
+
