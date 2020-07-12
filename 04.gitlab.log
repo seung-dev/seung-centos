@@ -68,6 +68,16 @@ public (active)
 # systemctl start postfix
 # curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 # EXTERNAL_URL="http://192.168.94.101" dnf install -y gitlab-ee
+# df -m
+Filesystem     1M-blocks  Used Available Use% Mounted on
+devtmpfs            1860     0      1860   0% /dev
+tmpfs               1876     1      1876   1% /dev/shm
+tmpfs               1876    12      1865   1% /run
+tmpfs               1876     0      1876   0% /sys/fs/cgroup
+/dev/sda3          18121  6851     11271  38% /
+/dev/sda1            283   144       120  55% /boot
+tmpfs                376     2       375   1% /run/user/42
+tmpfs                376     6       370   2% /run/user/1000
 
 
 
