@@ -1,0 +1,10 @@
+# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        884M     0  884M   0% /dev
+tmpfs           901M     0  901M   0% /dev/shm
+tmpfs           901M  9.7M  891M   2% /run
+tmpfs           901M     0  901M   0% /sys/fs/cgroup
+/dev/sda3        18G  4.8G   13G  27% /
+/dev/sda1       283M  144M  120M  55% /boot
+tmpfs           181M  1.2M  179M   1% /run/user/42
+tmpfs           181M  5.7M  175M   4% /run/user/1000
