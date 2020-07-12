@@ -1,0 +1,37 @@
+# adduser ua
+# passwd ua
+Changing password for user ua.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+# adduser ub
+# passwd ub
+Changing password for user ub.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+# adduser uc
+# passwd uc
+Changing password for user uc.
+New password: 
+BAD PASSWORD: The password is shorter than 8 characters
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+# groupadd git-prj-a
+# usermod -a -G git-prj-a ua
+# usermod -a -G git-prj-a uc
+# groupadd git-prj-b
+# usermod -a -G git-prj-b ub
+# cat /etc/group | grep git
+git-prj-a:x:1008:ua,uc
+# getent group git-prj-a
+git-prj-a:x:1008:ua,uc
+# mkdir /srv/git/prj-a.git
+# chgrp git-prj-a /srv/git/prj-a.git
+# ll /srv/git
+total 0
+drwxr-xr-x. 2 root git-prj-a 6 Jul 12 10:23 prj-a.git
+# git init --bare --shared=0660 /srv/git/prj-a.git
+
